@@ -1,0 +1,78 @@
+# ============================================
+# IGNORE NOTEBOOK FILES
+# ============================================
+*.ipynb
+*.ipynb_checkpoints/
+.ipynb_checkpoints/
+
+# ============================================
+# IGNORE IMAGES PROJECT FOLDER
+# ============================================
+images_project_energy_2026/
+images_project_energy_2026/**
+project-energy-2026/images_project_energy_2026/
+
+# ============================================
+# IGNORE DATA & OUTPUT FOLDER
+# ============================================
+data/
+data/**
+data/raw/
+data/raw/**
+data/processed/
+data/processed/**
+output/
+output/**
+output/figures/
+output/figures/**
+output/tables/
+output/tables/**
+
+# ============================================
+# PYTHON & ENVIRONMENT
+# ============================================
+__pycache__/
+*.py[cod]
+*.so
+.Python
+.env
+.venv
+env/
+venv/
+ENV/
+
+# ============================================
+# CONDA ENVIRONMENT
+# ============================================
+conda-env/
+environment.yml
+
+# ============================================
+# IDE & EDITOR
+# ============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============================================
+# STREAMLIT
+# ============================================
+.streamlit/
+
+# ============================================
+# LOGS & TEMP
+# ============================================
+*.log
+*.tmp
+temp/
+
+# ============================================
+# SECRETS
+# ============================================
+*.key
+*.pem
+secrets/
