@@ -283,4 +283,3 @@ This project is for **portfolio purposes only**.
 <div align="center">
     <sub>© 2026 Burhanudin Badiuzaman - Portfolio Project Energy 2026</sub>
 </div>
-```
