@@ -138,8 +138,26 @@ flowchart TD
 
 ---
 
-### Sample Visualization: Vulnerability Map
-![Vulnerability Map](https://img.shields.io/badge/Map-Interactive%20with%20Markers-red)
+### 🗺️ Sample Visualization: Vulnerability Map
+
+Below is a **screenshot** of the interactive vulnerability map from the dashboard, showing critical points in the Java grid around Bekasi:
+
+![Vulnerability Map - Java Grid Critical Points](images_project_energy_2026/vulnerability_map_preview.png)
+
+*Figure 1: Interactive vulnerability map showing red (critical substations), orange (data center), and yellow (major power plants) markers.*
+
+> **Note:** The actual dashboard contains a **fully interactive version** of this map where you can:
+> - Hover over markers to see details
+> - Zoom in/out to explore specific areas
+> - Click on markers for more information
+
+### Map Legend
+
+| Color | Meaning | Locations |
+|:------|:--------|:-----------|
+| 🔴 **Red** | Critical points | Bekasi Substation, SUTET Bekasi-Cawang |
+| 🟠 **Orange** | High risk | Digital Edge Data Center (500 MW) |
+| 🟡 **Yellow** | Major power plants | PLTU Suralaya (3,400 MW), PLTG Muara Tawar (2,200 MW) |
 
 The dashboard includes an **interactive vulnerability map** showing:
 - 🔴 **Red markers**: Critical points (Bekasi Substation, SUTET)
