@@ -60,7 +60,7 @@ safe_mkdir(FIGURES_DIR)
 safe_mkdir(TABLES_DIR)
 
 # ============================================
-# KOORDINAT PROVINSI REALISTIS (UNTUK FALLBACK)
+# KOORDINAT PROVINSI REALISTIS (LENGKAP 34 PROVINSI)
 # ============================================
 
 PROVINCE_COORDS = {
@@ -72,8 +72,8 @@ PROVINCE_COORDS = {
     'Sumatera Selatan': (-3.0, 104.0),
     'Bengkulu': (-3.5, 102.0),
     'Lampung': (-4.5, 105.0),
-    'Kep. Bangka Belitung': (-2.5, 106.5),
-    'Kep. Riau': (0.5, 107.0),
+    'Kepulauan Bangka Belitung': (-2.5, 106.5),
+    'Kepulauan Riau': (0.5, 107.0),
     'DKI Jakarta': (-6.2, 106.8),
     'Jawa Barat': (-6.8, 107.5),
     'Jawa Tengah': (-7.5, 110.0),
@@ -101,33 +101,46 @@ PROVINCE_COORDS = {
 }
 
 # ============================================
+# FUNGSI GET KOORDINAT (DENGAN FALLBACK)
+# ============================================
+
+def get_coordinates(province_name):
+    """Mendapatkan koordinat provinsi dengan aman"""
+    # Coba cari langsung
+    if province_name in PROVINCE_COORDS:
+        return PROVINCE_COORDS[province_name]
+    
+    # Coba cari dengan case-insensitive
+    for key, coords in PROVINCE_COORDS.items():
+        if key.lower() == province_name.lower():
+            return coords
+    
+    # Fallback: koordinat pusat Indonesia (Jawa)
+    print(f"⚠️ Provinsi '{province_name}' tidak ditemukan, menggunakan koordinat default Jakarta")
+    return (-6.2, 106.8)
+
+# ============================================
 # FALLBACK DATA (REALISTIS)
 # ============================================
 
 def get_fallback_plants_data():
-    """Fallback data pembangkit dengan koordinat REALISTIS (bukan random)"""
+    """Fallback data pembangkit dengan koordinat REALISTIS"""
     
     fuel_types = ['Coal', 'Gas', 'Hydro', 'Geothermal', 'Solar', 'Wind', 'Biomass']
-    fuel_weights = [0.35, 0.20, 0.15, 0.10, 0.10, 0.05, 0.05]  # distribusi realistis
+    fuel_weights = [0.35, 0.20, 0.15, 0.10, 0.10, 0.05, 0.05]
     
     data = []
     for province, (base_lat, base_lon) in PROVINCE_COORDS.items():
-        # Setiap provinsi punya 3-10 pembangkit
         num_plants = np.random.randint(3, 11)
         
         for i in range(num_plants):
-            # Koordinat dengan variasi kecil dalam provinsi (masih di daratan)
-            lat_variasi = base_lat + np.random.uniform(-0.8, 0.8)
-            lon_variasi = base_lon + np.random.uniform(-0.8, 0.8)
-            
-            # Kapasitas bervariasi
+            lat_variasi = base_lat + np.random.uniform(-0.5, 0.5)
+            lon_variasi = base_lon + np.random.uniform(-0.5, 0.5)
             capacity = np.random.choice([10, 25, 50, 100, 200, 500, 1000], p=[0.3, 0.25, 0.2, 0.1, 0.08, 0.05, 0.02])
-            
-            # Tahun commissioning
             year = np.random.randint(1980, 2026)
             
             data.append({
-                'name': f'PL{"TU" if np.random.random() > 0.5 else "TA"} {province} {i+1}',
+                'name': f'Pembangkit {province} {i+1}',
                 'country': 'IDN',
                 'country_long': province,
                 'primary_fuel': np.random.choice(fuel_types, p=fuel_weights),
@@ -153,7 +166,7 @@ def get_fallback_gap_data():
 
 
 def get_fallback_ebt_data():
-    """Fallback data EBT dengan koordinat realistis"""
+    """Fallback data EBT dengan koordinat REALISTIS"""
     data = []
     for province, (lat, lon) in PROVINCE_COORDS.items():
         data.append({
@@ -171,18 +184,18 @@ def get_fallback_ebt_data():
 
 
 def get_fallback_coal_data():
-    """Fallback data PLTU"""
-    data = {
-        'name': ['PLTU Paiton', 'PLTU Suralaya', 'PLTU Tanjung Jati', 'PLTU Cirebon', 'PLTU Tenayan',
-                 'PLTU Lontar', 'PLTU Pelabuhan Ratu', 'PLTU Indramayu', 'PLTU Banten', 'PLTU Riau'],
-        'capacity_mw': [1230, 3400, 1320, 660, 220, 650, 1000, 1000, 600, 300],
-        'age_years': [25, 30, 20, 15, 25, 18, 22, 12, 10, 8],
-        'annual_co2_tons': [8000000, 22000000, 8500000, 4300000, 1430000, 4200000, 6500000, 6500000, 3900000, 1950000],
-        'priority_level': ['Tinggi', 'Sangat Tinggi', 'Tinggi', 'Sedang', 'Tinggi', 'Sedang', 'Tinggi', 'Sedang', 'Rendah', 'Rendah'],
-        'latitude': [-7.5, -5.9, -6.5, -6.7, 0.5, -6.0, -6.9, -6.4, -6.0, 0.5],
-        'longitude': [113.5, 106.0, 110.5, 108.5, 101.5, 106.5, 106.5, 108.5, 106.0, 101.5],
-    }
-    return pd.DataFrame(data)
+    """Fallback data PLTU dengan koordinat REALISTIS"""
+    coal_plants = [
+        {'name': 'PLTU Paiton', 'lat': -7.5, 'lon': 113.5, 'capacity_mw': 1230, 'age_years': 25, 'annual_co2_tons': 8000000, 'priority_level': 'Tinggi'},
+        {'name': 'PLTU Suralaya', 'lat': -5.9, 'lon': 106.0, 'capacity_mw': 3400, 'age_years': 30, 'annual_co2_tons': 22000000, 'priority_level': 'Sangat Tinggi'},
+        {'name': 'PLTU Tanjung Jati', 'lat': -6.5, 'lon': 110.5, 'capacity_mw': 1320, 'age_years': 20, 'annual_co2_tons': 8500000, 'priority_level': 'Tinggi'},
+        {'name': 'PLTU Cirebon', 'lat': -6.7, 'lon': 108.5, 'capacity_mw': 660, 'age_years': 15, 'annual_co2_tons': 4300000, 'priority_level': 'Sedang'},
+        {'name': 'PLTU Tenayan', 'lat': 0.5, 'lon': 101.5, 'capacity_mw': 220, 'age_years': 25, 'annual_co2_tons': 1430000, 'priority_level': 'Tinggi'},
+        {'name': 'PLTU Lontar', 'lat': -6.0, 'lon': 106.5, 'capacity_mw': 650, 'age_years': 18, 'annual_co2_tons': 4200000, 'priority_level': 'Sedang'},
+        {'name': 'PLTU Pelabuhan Ratu', 'lat': -6.9, 'lon': 106.5, 'capacity_mw': 1000, 'age_years': 22, 'annual_co2_tons': 6500000, 'priority_level': 'Tinggi'},
+        {'name': 'PLTU Indramayu', 'lat': -6.4, 'lon': 108.5, 'capacity_mw': 1000, 'age_years': 12, 'annual_co2_tons': 6500000, 'priority_level': 'Sedang'},
+    ]
+    return pd.DataFrame(coal_plants)
 
 
 def get_fallback_cascading_data():
