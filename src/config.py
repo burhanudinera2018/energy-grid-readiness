@@ -3,9 +3,38 @@ from pathlib import Path
 import os
 import pandas as pd
 import numpy as np
+import tempfile
 
-# Root directory project
-PROJECT_ROOT = Path("/Users/macos/Study_burhanudin_2025/Data Analytics/Portfolio Project/project-energy-2026")
+# ============================================
+# DETEKSI LINGKUNGAN (LOCAL vs CLOUD)
+# ============================================
+
+def is_streamlit_cloud():
+    """Cek apakah sedang berjalan di Streamlit Cloud"""
+    return os.environ.get('STREAMLIT_SHARING_MODE', '').lower() == 'true' or 'STREAMLIT_CLOUD' in os.environ
+
+def get_project_root():
+    """Mendapatkan root directory project dengan aman"""
+    # Coba beberapa kemungkinan lokasi
+    possible_roots = [
+        Path(__file__).parent.parent,  # Lokasi normal
+        Path('/mount/src/energy-grid-readiness'),  # Streamlit Cloud
+        Path('/app'),  # Alternatif cloud
+        Path.cwd(),  # Current working directory
+    ]
+    
+    for root in possible_roots:
+        if root.exists():
+            return root
+    
+    # Fallback: gunakan temp directory
+    return Path(tempfile.gettempdir()) / 'energy-grid-readiness'
+
+# ============================================
+# SETUP PATH DENGAN AMAN
+# ============================================
+
+PROJECT_ROOT = get_project_root()
 
 # Data directories
 DATA_DIR = PROJECT_ROOT / 'data'
@@ -17,9 +46,24 @@ OUTPUT_DIR = PROJECT_ROOT / 'output'
 FIGURES_DIR = OUTPUT_DIR / 'figures'
 TABLES_DIR = OUTPUT_DIR / 'tables'
 
-# Pastikan direktori ada
-for dir_path in [RAW_DATA_DIR, PROCESSED_DATA_DIR, FIGURES_DIR, TABLES_DIR]:
-    dir_path.mkdir(parents=True, exist_ok=True)
+# ============================================
+# MEMBUAT DIREKTORI DENGAN AMAN (TIDAK ERROR)
+# ============================================
+
+def safe_mkdir(path):
+    """Membuat direktori dengan aman (tidak error jika gagal)"""
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+        return True
+    except (PermissionError, OSError):
+        # Di cloud, mungkin tidak bisa membuat folder
+        return False
+
+# Buat direktori (abaikan jika gagal)
+safe_mkdir(RAW_DATA_DIR)
+safe_mkdir(PROCESSED_DATA_DIR)
+safe_mkdir(FIGURES_DIR)
+safe_mkdir(TABLES_DIR)
 
 # ============================================
 # FALLBACK DATA (Untuk Streamlit Cloud Deployment)
@@ -30,7 +74,6 @@ def get_fallback_plants_data():
     import pandas as pd
     import numpy as np
     
-    # Data dummy untuk 34 provinsi di Indonesia
     provinces = [
         'Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Jambi',
         'Sumatera Selatan', 'Bengkulu', 'Lampung', 'Kep. Bangka Belitung', 'Kep. Riau',
@@ -41,10 +84,9 @@ def get_fallback_plants_data():
         'Gorontalo', 'Sulawesi Barat', 'Maluku', 'Maluku Utara', 'Papua Barat', 'Papua'
     ]
     
-    # Data dummy (estimasi realistis)
     np.random.seed(42)
     data = []
-    for i, prov in enumerate(provinces):
+    for prov in provinces:
         data.append({
             'name': f'PLTU {prov}',
             'country': 'IDN',
@@ -106,8 +148,6 @@ def get_fallback_coal_data():
 
 def get_fallback_cascading_data():
     """Fallback data cascading failure jika file tidak ditemukan"""
-    import json
-    
     return {
         'sumatra_baseline': {
             'total_pelanggan_terdampak': 13100000,
@@ -144,5 +184,12 @@ def get_fallback_cba_data():
 
 def is_cloud_deployment():
     """Cek apakah sedang berjalan di Streamlit Cloud"""
-    import os
-    return os.environ.get('STREAMLIT_SHARING_MODE', '').lower() == 'true' or 'STREAMLIT_CLOUD' in os.environ
+    return is_streamlit_cloud()
+
+
+# Cetak informasi path (untuk debugging)
+if not is_streamlit_cloud():
+    print(f"✅ PROJECT_ROOT: {PROJECT_ROOT}")
+    print(f"✅ RAW_DATA_DIR: {RAW_DATA_DIR}")
+    print(f"✅ PROCESSED_DATA_DIR: {PROCESSED_DATA_DIR}")
+    print(f"✅ FIGURES_DIR: {FIGURES_DIR}")
