@@ -9,96 +9,91 @@ project_root = Path(__file__).parent.parent.parent
 sys.path.append(str(project_root))
 
 from src.config import PROCESSED_DATA_DIR
+from utils_fallback import load_plants_data, check_data_status
+from footer import show_footer
 
 st.set_page_config(page_title="Peta Pembangkit", layout="wide")
 st.title("🗺️ Peta Pembangkit Listrik Indonesia")
+st.markdown("### Sebaran Pembangkit Listrik di Seluruh Indonesia")
 
-# Load data
-plants_path = PROCESSED_DATA_DIR / 'indonesia_power_plants_clean.csv'
+# Cek status data
+data_available = check_data_status()
 
-if plants_path.exists():
-    df = pd.read_csv(plants_path)
-    
-    # Sidebar filters
-    st.sidebar.header("🔍 Filter")
-    
-    # Filter tipe pembangkit
-    fuel_types = ['Semua'] + sorted(df['primary_fuel'].unique().tolist())
-    selected_fuel = st.sidebar.selectbox("Tipe Pembangkit", fuel_types)
-    
-    # Filter kapasitas minimum
-    min_capacity = st.sidebar.slider(
-        "Kapasitas Minimum (MW)",
-        min_value=0,
-        max_value=int(df['capacity_mw'].max()),
-        value=0
+# Load data dengan fallback
+df = load_plants_data()
+
+# Sidebar filters
+st.sidebar.header("🔍 Filter")
+
+# Filter tipe pembangkit
+fuel_types = ['Semua'] + sorted(df['primary_fuel'].unique().tolist())
+selected_fuel = st.sidebar.selectbox("Tipe Pembangkit", fuel_types)
+
+# Filter kapasitas minimum
+min_capacity = st.sidebar.slider(
+    "Kapasitas Minimum (MW)",
+    min_value=0,
+    max_value=int(df['capacity_mw'].max()) if len(df) > 0 else 500,
+    value=0
+)
+
+# Apply filters
+df_filtered = df.copy()
+if selected_fuel != 'Semua':
+    df_filtered = df_filtered[df_filtered['primary_fuel'] == selected_fuel]
+df_filtered = df_filtered[df_filtered['capacity_mw'] >= min_capacity]
+
+# Informasi jumlah data
+st.info(f"Menampilkan {len(df_filtered):,} dari {len(df):,} pembangkit")
+
+# Statistik ringkas
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.metric("Total Kapasitas", f"{df_filtered['capacity_mw'].sum():,.0f} MW")
+with col2:
+    st.metric("Kapasitas Rata-rata", f"{df_filtered['capacity_mw'].mean():,.0f} MW")
+with col3:
+    st.metric("Kapasitas Terbesar", f"{df_filtered['capacity_mw'].max():,.0f} MW")
+
+# Peta interaktif
+st.subheader("📍 Sebaran Lokasi Pembangkit")
+
+df_map = df_filtered.dropna(subset=['latitude', 'longitude'])
+
+if len(df_map) > 0:
+    fig = px.scatter_mapbox(
+        df_map,
+        lat='latitude',
+        lon='longitude',
+        size='capacity_mw',
+        color='primary_fuel',
+        hover_name='name',
+        hover_data={
+            'capacity_mw': ':,.0f MW',
+            'primary_fuel': True,
+            'commissioning_year': True
+        },
+        size_max=30,
+        zoom=3.5,
+        center=dict(lat=-2.5, lon=118),
+        title="Peta Pembangkit Listrik Indonesia"
     )
     
-    # Apply filters
-    df_filtered = df.copy()
-    if selected_fuel != 'Semua':
-        df_filtered = df_filtered[df_filtered['primary_fuel'] == selected_fuel]
-    df_filtered = df_filtered[df_filtered['capacity_mw'] >= min_capacity]
+    fig.update_layout(
+        mapbox_style="open-street-map",
+        height=600,
+        margin=dict(l=0, r=0, t=40, b=0)
+    )
     
-    # Informasi jumlah data
-    st.info(f"Menampilkan {len(df_filtered):,} dari {len(df):,} pembangkit")
-    
-    # Statistik ringkas
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Total Kapasitas", f"{df_filtered['capacity_mw'].sum():,.0f} MW")
-    with col2:
-        st.metric("Kapasitas Rata-rata", f"{df_filtered['capacity_mw'].mean():,.0f} MW")
-    with col3:
-        st.metric("Kapasitas Terbesar", f"{df_filtered['capacity_mw'].max():,.0f} MW")
-    
-    # Peta interaktif dengan Plotly
-    st.subheader("📍 Sebaran Lokasi Pembangkit")
-    
-    # Siapkan data untuk peta
-    df_map = df_filtered.dropna(subset=['latitude', 'longitude'])
-    
-    if len(df_map) > 0:
-        fig = px.scatter_mapbox(
-            df_map,
-            lat='latitude',
-            lon='longitude',
-            size='capacity_mw',
-            color='primary_fuel',
-            hover_name='name',
-            hover_data={
-                'capacity_mw': ':,.0f MW',
-                'primary_fuel': True,
-                'commissioning_year': True
-            },
-            size_max=30,
-            zoom=3.5,
-            center=dict(lat=-2.5, lon=118),
-            title="Peta Pembangkit Listrik Indonesia"
-        )
-        
-        fig.update_layout(
-            mapbox_style="open-street-map",
-            height=600,
-            margin=dict(l=0, r=0, t=40, b=0)
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.warning("Tidak ada data koordinat untuk ditampilkan")
-    
-    # Tabel data
-    with st.expander("📋 Lihat Tabel Data Pembangkit"):
-        st.dataframe(
-            df_filtered[['name', 'primary_fuel', 'capacity_mw', 'country_long', 'commissioning_year']].head(100),
-            use_container_width=True
-        )
-    
+    st.plotly_chart(fig, use_container_width=True)
 else:
-    st.error("Data pembangkit tidak ditemukan. Jalankan script 01_load_filter_plants.py terlebih dahulu.")
+    st.warning("Tidak ada data koordinat untuk ditampilkan")
 
-# Di setiap file halaman
-from footer import show_footer
+# Tabel data
+with st.expander("📋 Lihat Tabel Data Pembangkit"):
+    display_cols = ['name', 'primary_fuel', 'capacity_mw', 'country_long', 'commissioning_year']
+    available_cols = [col for col in display_cols if col in df_filtered.columns]
+    st.dataframe(df_filtered[available_cols].head(100), use_container_width=True)
 
-# Di bagian akhir halaman
-show_footer("Peta Pembangkit Listrik Indonesia")  # untuk halaman 1
+# Footer
+show_footer("Peta Pembangkit - Sebaran 5.000+ Pembangkit Listrik Indonesia")
