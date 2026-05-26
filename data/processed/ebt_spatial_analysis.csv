@@ -1,0 +1,35 @@
+province,lat,lon,total_potential_mw,existing_capacity_mw,gap_mw,utilization_rate,priority_level,priority_score
+Aceh,4.5,96.5,14235,502,5562,2.71,Rendah,89.4
+Sumatera Utara,2.0,99.0,18313,957,5316,4.42,Tinggi,91.2
+Sumatera Barat,-1.0,100.5,21468,860,6105,1.38,Rendah,87.8
+Riau,0.5,102.0,17420,792,23741,2.2,Sangat Tinggi,95.1
+Jambi,-1.5,103.5,18861,48,17580,4.53,Sangat Tinggi,43.5
+Sumatera Selatan,-3.0,104.0,22414,744,13645,1.25,Sangat Tinggi,52.6
+Bengkulu,-3.5,102.0,8356,239,11450,4.34,Tinggi,57.1
+Lampung,-4.5,105.0,24765,407,14910,1.04,Sedang,49.4
+Kepulauan Bangka Belitung,-2.5,106.5,17425,579,21962,4.07,Rendah,40.5
+Kepulauan Riau,0.5,107.0,16430,213,14837,0.17,Sedang,47.1
+DKI Jakarta,-6.2,106.8,18960,949,19301,3.05,Rendah,43.8
+Jawa Barat,-6.8,107.5,22345,978,4763,2.21,Rendah,41.8
+Jawa Tengah,-7.5,110.0,20915,987,8715,3.75,Tinggi,68.0
+DI Yogyakarta,-7.8,110.4,6198,665,20548,2.3,Sangat Tinggi,74.3
+Jawa Timur,-7.5,112.5,15675,189,20856,1.93,Sedang,79.1
+Banten,-6.3,106.0,21072,641,18889,2.23,Sedang,87.2
+Bali,-8.3,115.2,8520,934,15704,0.38,Tinggi,61.6
+Nusa Tenggara Barat,-8.5,118.0,13473,256,4839,0.17,Sangat Tinggi,44.3
+Nusa Tenggara Timur,-8.8,121.5,17545,84,6086,4.26,Sangat Tinggi,65.1
+Kalimantan Barat,0.0,110.0,16637,936,19157,0.74,Sedang,78.3
+Kalimantan Tengah,-1.5,113.0,18284,889,11225,0.69,Rendah,59.7
+Kalimantan Selatan,-3.0,115.0,9914,580,7937,3.78,Sedang,48.2
+Kalimantan Timur,0.5,117.0,12628,734,23976,4.53,Tinggi,59.4
+Kalimantan Utara,3.0,116.0,24880,258,6524,3.11,Rendah,63.6
+Sulawesi Utara,1.0,124.0,13072,708,19640,1.8,Rendah,54.6
+Sulawesi Tengah,-1.0,121.0,16715,461,15909,4.66,Sedang,78.2
+Sulawesi Selatan,-4.0,120.0,19132,970,22470,0.28,Rendah,42.8
+Sulawesi Tenggara,-4.0,122.5,16658,678,5131,2.4,Tinggi,86.1
+Gorontalo,0.5,123.0,9591,643,14707,3.86,Sangat Tinggi,54.8
+Sulawesi Barat,-2.5,119.5,21425,318,17583,4.03,Sangat Tinggi,65.3
+Maluku,-3.0,129.0,16605,863,10166,3.6,Tinggi,89.2
+Maluku Utara,0.5,127.5,16461,81,5763,4.18,Sedang,71.3
+Papua Barat,-1.5,133.0,13985,322,6922,4.67,Tinggi,70.2
+Papua,-4.0,138.0,10914,636,9819,1.89,Sangat Tinggi,52.0
