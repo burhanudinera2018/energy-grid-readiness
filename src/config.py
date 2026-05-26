@@ -8,7 +8,7 @@ PROJECT_ROOT = Path(__file__).parent.parent
 # Data directories
 DATA_DIR = PROJECT_ROOT / 'data'
 RAW_DATA_DIR = DATA_DIR / 'raw'
-PROCESSED_DATA_DIR = DATA_DIR / 'processed'
+PROCESSED_DATA_DIR = PROJECT_ROOT / 'data' / 'processed'
 
 # Output directories
 OUTPUT_DIR = PROJECT_ROOT / 'output'
