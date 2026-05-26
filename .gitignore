@@ -1,29 +1,14 @@
 # ============================================
 # DATA SENSITIF (HARUS PRIVATE)
 # ============================================
-
-# Data mentah (copyright, tidak boleh publik)
 data/raw/*.csv
 data/raw/*.xlsx
-data/raw/*.xls
-data/raw/*.xlsm
-
-# Data hasil processing (bisa berisi info teknis)
 data/processed/*.csv
 data/processed/*.json
-data/processed/*.txt
-
-# Screenshot internal
-images_project_energy_2026/
-images_project_energy_2026/**/*.png
-images_project_energy_2026/**/*.jpg
-images_project_energy_2026/**/*.jpeg
 
 # ============================================
-# SCRIPTS (OPTIONAL - BOLEH PRIVATE)
+# SCRIPTS (PRIVATE - HANYA .GITKEEP)
 # ============================================
-
-# Semua file .py di folder scripts (kecuali .gitkeep)
 scripts/*.py
 !scripts/.gitkeep
 
@@ -31,120 +16,53 @@ scripts/*.py
 # NOTEBOOK FILES (TIDAK PERLU)
 # ============================================
 *.ipynb
-*.ipynb_checkpoints/
 .ipynb_checkpoints/
 notebooks/
-notebooks/**/*.ipynb
 
 # ============================================
-# OUTPUT FILES (BISA DIREMAKE SAAT RUN)
+# OUTPUT FILES (BISA DIREMAKE)
 # ============================================
 output/figures/*.png
-output/figures/*.jpg
-output/figures/*.jpeg
 output/figures/*.html
-output/tables/*.csv
-output/tables/*.xlsx
-
-# TAPI tetap upload folder kosong untuk struktur
 !output/figures/.gitkeep
-!output/tables/.gitkeep
+
+# ============================================
+# GAMBAR UNTUK README (TETAP DI-TRACK)
+# ============================================
+# Folder gambar untuk README.md - JANGAN DI-IGNORE!
+# images_project_energy_2026/  (jangan tambahkan baris ini)
 
 # ============================================
 # PYTHON & ENVIRONMENT
 # ============================================
 __pycache__/
-__pycache__/**/*
 *.pyc
-*.pyo
-*.so
-.Python
-*.egg-info/
-*.egg
-dist/
-build/
 .env
 .venv
 venv/
-ENV/
-env/
 
 # ============================================
-# CONDA ENVIRONMENT
-# ============================================
-conda-env/
-environment.yml
-environment.yaml
-requirements_conda.txt
-
-# ============================================
-# IDE & EDITOR
+# IDE & OS
 # ============================================
 .vscode/
-.vscode/**/*
 .idea/
-.idea/**/*
-*.swp
-*.swo
-*~
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-*.bak
-*.orig
 
 # ============================================
 # STREAMLIT
 # ============================================
 .streamlit/
-.streamlit/**/*
-.streamlit/secrets.toml
 
 # ============================================
-# LOGS & TEMP
-# ============================================
-*.log
-*.tmp
-*.temp
-temp/
-logs/
-log/
-
-# ============================================
-# TESTING & DEBUG
+# TESTING
 # ============================================
 test_env.py
-test_*.py
-*_test.py
-debug_*.py
-.pytest_cache/
-.tox/
 
 # ============================================
-# KEEP FOLDER STRUCTURE (tapi kosong)
+# KEEP FOLDER STRUCTURE
 # ============================================
 !data/raw/.gitkeep
 !data/processed/.gitkeep
-!images_project_energy_2026/.gitkeep
-!output/figures/.gitkeep
-!output/tables/.gitkeep
 !scripts/.gitkeep
-
-# ============================================
-# LAINNYA
-# ============================================
-
-# Git
-*.patch
-
-# OS generated files
-.directory
-.dirstamp
-
-# Backup files
-*.backup
-*.old
+!output/figures/.gitkeep

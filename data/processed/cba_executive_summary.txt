@@ -1,0 +1,35 @@
+
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │                    RINGKASAN EKSEKUTIF UNTUK PRESENTASI                     │
+    ├─────────────────────────────────────────────────────────────────────────────┤
+    │                                                                              │
+    │  📊 HASIL ANALISIS CBA PENSIUN DINI PLTU (Studi: Tenayan Riau, 220 MW)      │
+    │                                                                              │
+    │  1. PERBANDINGAN SKENARIO:                                                   │
+    │     • BAU (PLTU Beroperasi)     : -US$ 7.684 Miliar 🔴                       │
+    │     • RE (Tutup Tanpa Ganti)    : -US$ 9.143 Miliar 🔴🔴 (TERBURUK)          │
+    │     • AR (Tutup + PLTS)         : -US$ 1.126 Miliar 🟢 (TERBAIK)             │
+    │                                                                              │
+    │  2. PAYBACK PERIOD INVESTASI PLTS:                                           │
+    │     • Investasi awal: ~US$ 675 Juta                                         │
+    │     • Penghematan tahunan: ~US$ 1.500 Juta                                  │
+    │     • 📍 PAYBACK PERIOD: 0.9 TAHUN                           │
+    │                                                                              │
+    │  3. DAMPAK PENGHAPUSAN SUBSIDI BATUBARA:                                     │
+    │     • Tanpa subsidi, kerugian BAU membengkak menjadi -US$ 7.184 Miliar      │
+    │     • Skenario AR menjadi 8397 Juta USD LEBIH BAIK dari BAU │
+    │                                                                              │
+    │  4. REKOMENDASI KEBIJAKAN:                                                   │
+    │     ✅ Pensiun dini PLTU WAJIB disertai pembangunan PLTS pengganti          │
+    │     ✅ Perlu insentif untuk menurunkan discount rate EBT (5-7% vs 10%)       │
+    │     ✅ Hapus subsidi batubara secara bertahap untuk membuat EBT kompetitif   │
+    │     ✅ Program just transition untuk daerah terdampak (Kaltim, Kalsel)      │
+    │                                                                              │
+    │  💡 PESAN UTAMA UNTUK STAKEHOLDER:                                           │
+    │     "Pensiun dini PLTU tidak akan berhasil secara ekonomi jika hanya        │
+    │      berhenti di penutupan. Kuncinya adalah REPLACEMENT dengan EBT.         │
+    │      Dengan payback period 0.9 tahun, investasi PLTS          │
+    │      adalah pilihan paling rasional meskipun semua skenario merugi."        │
+    │                                                                              │
+    └─────────────────────────────────────────────────────────────────────────────┘
+    
