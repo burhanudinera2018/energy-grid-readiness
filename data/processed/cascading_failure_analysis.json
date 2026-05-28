@@ -1,0 +1,126 @@
+{
+  "sumatra_baseline": {
+    "total_pelanggan_terdampak": 13100000,
+    "pelanggan_pulih_24jam": 8350000,
+    "total_pasokan_mw": 5344,
+    "pasokan_pulih_mw": 3192,
+    "gardu_induk_terdampak": 176,
+    "gardu_induk_pulih": 157,
+    "waktu_pemulihan_transmisi": 2,
+    "waktu_pemulihan_pltu": 18,
+    "penyebab_utama": "Gangguan SUTET 275 kV akibat cuaca buruk"
+  },
+  "critical_locations": [
+    {
+      "nama": "Gardu Induk Bekasi (Cikarang)",
+      "lat": -6.345,
+      "lon": 107.148,
+      "jenis": "Gardu Induk",
+      "risiko": "Kritis",
+      "beban_mw": 500,
+      "keterangan": "Titik interkoneksi pusat data 500 MW"
+    },
+    {
+      "nama": "Digital Edge CGK Campus (Pusat Data)",
+      "lat": -6.238,
+      "lon": 107.001,
+      "jenis": "Pusat Data",
+      "risiko": "Sangat Tinggi",
+      "beban_mw": 500,
+      "keterangan": "Target operasi Q4 2026, 500 MW"
+    },
+    {
+      "nama": "SUTET 500 kV Bekasi - Cawang",
+      "lat": -6.28,
+      "lon": 106.95,
+      "jenis": "SUTET",
+      "risiko": "Kritis",
+      "beban_mw": 1500,
+      "keterangan": "Backbone transmisi Jakarta Timur"
+    },
+    {
+      "nama": "Gardu Induk Gandul",
+      "lat": -6.4,
+      "lon": 106.8,
+      "jenis": "Gardu Induk",
+      "risiko": "Tinggi",
+      "beban_mw": 800,
+      "keterangan": "Sistem proteksi dan switching"
+    },
+    {
+      "nama": "PLTU Suralaya",
+      "lat": -5.88,
+      "lon": 106.02,
+      "jenis": "Pembangkit",
+      "risiko": "Tinggi",
+      "beban_mw": 3400,
+      "keterangan": "PLTU terbesar di Jawa (3.400 MW)"
+    },
+    {
+      "nama": "Gardu Induk Cawang",
+      "lat": -6.24,
+      "lon": 106.87,
+      "jenis": "Gardu Induk",
+      "risiko": "Sedang",
+      "beban_mw": 600,
+      "keterangan": "Titik koneksi Jakarta Selatan"
+    },
+    {
+      "nama": "PLTG Muara Tawar",
+      "lat": -6.12,
+      "lon": 107.08,
+      "jenis": "Pembangkit",
+      "risiko": "Sedang",
+      "beban_mw": 2200,
+      "keterangan": "PLTG gas (2.200 MW)"
+    }
+  ],
+  "cascading_stages": [
+    {
+      "tahap": 0,
+      "waktu_menit": 0,
+      "kejadian": "Gangguan di Gardu Induk Bekasi",
+      "beban_hilang_mw": 500,
+      "status": "Gangguan lokal"
+    },
+    {
+      "tahap": 1,
+      "waktu_menit": 0.1,
+      "kejadian": "Sistem proteksi memisahkan titik gangguan - CB trip",
+      "beban_hilang_mw": 500,
+      "status": "Isolasi gangguan"
+    },
+    {
+      "tahap": 2,
+      "waktu_menit": 0.5,
+      "kejadian": "Penurunan frekuensi sistem ke 49.9 Hz",
+      "beban_hilang_mw": 500,
+      "status": "Under-frequency"
+    },
+    {
+      "tahap": 3,
+      "waktu_menit": 1.0,
+      "kejadian": "Frekuensi masih dalam batas aman (49.5-50.2 Hz)",
+      "beban_hilang_mw": 500,
+      "status": "Sistem stabil"
+    }
+  ],
+  "recovery_scenarios": {
+    "skenario_ringan": {
+      "deskripsi": "Gangguan transmisi saja, pembangkit aman",
+      "waktu_pemulihan_jam": 2,
+      "beban_kembali_persen": 90
+    },
+    "skenario_sedang": {
+      "deskripsi": "Gangguan + PLTU hot start trip",
+      "waktu_pemulihan_jam": 8,
+      "beban_kembali_persen": 70
+    },
+    "skenario_berat": {
+      "deskripsi": "Gangguan + PLTU cold start (seperti Sumatra 2026)",
+      "waktu_pemulihan_jam": 18,
+      "beban_kembali_persen": 50
+    }
+  },
+  "generated_at": "2026-05-25T15:57:52.054121"
+}

@@ -1,0 +1,9 @@
+{
+  "investasi_awal_juta_usd": 457.90999999999997,
+  "penghematan_tahunan_juta_usd": 510.64136,
+  "payback_period_tahun": 0.8967350392455479,
+  "npv_25_tahun_juta_usd": 4993.072230636484,
+  "biaya_pltu_per_kwh_usd": 0.07,
+  "biaya_plts_per_kwh_usd": 0.035,
+  "discount_rate_persen": 8.0
+}

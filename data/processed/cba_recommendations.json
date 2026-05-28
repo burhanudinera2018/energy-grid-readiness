@@ -1,0 +1,16 @@
+{
+  "kesimpulan_utama": "Skenario AR (Pensiun Dini + PLTS) adalah yang paling optimal secara ekonomi dengan kerugian paling kecil (USD 1.126 Miliar)",
+  "perbandingan": {
+    "BAU": "Kerugian: USD 7684 Miliar → Tidak layak secara ekonomi dan lingkungan",
+    "RE": "Kerugian: USD 9143 Miliar → Paling buruk karena mematikan ekonomi tanpa solusi",
+    "AR": "Kerugian: USD 1126 Miliar → Paling optimal, perlu didorong"
+  },
+  "rekomendasi_kebijakan": [
+    "1. Pensiun dini PLTU WAJIB disertai pembangunan pembangkit EBT pengganti",
+    "2. Skenario AR layak diimplementasikan dengan dukungan pendanaan JETP",
+    "3. Perlu skema kompensasi untuk daerah yang kehilangan pendapatan batubara",
+    "4. Program just transition untuk pekerja tambang dan PLTU",
+    "5. Optimalkan biaya sosial karbon sebagai instrumen kebijakan"
+  ],
+  "data_sumber": "Erbas et al, \"Sustainability Premium for the Early Retirement of Coal Plants: Evidence from Indonesia\", Boston University Global Development Policy Center, 2024"
+}

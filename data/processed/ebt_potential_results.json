@@ -1,0 +1,48 @@
+{
+  "metode": "Persentil (P90, P75, P50, P25)",
+  "threshold": {
+    "p90_sangat_tinggi": 93.33999999999999,
+    "p75_tinggi": 89.91625,
+    "p50_sedang": 86.94999999999999,
+    "p25_rendah": 83.20375
+  },
+  "provinsi_prioritas_sangat_tinggi": [
+    "Jawa Barat",
+    "Jawa Tengah",
+    "Jawa Timur",
+    "Papua"
+  ],
+  "provinsi_prioritas_tinggi": [
+    "Nanggroe Aceh Darussalam",
+    "Bali",
+    "Sulawesi Utara",
+    "Sulawesi Tengah",
+    "Sulawesi Selatan"
+  ],
+  "total_gap_sangat_tinggi_gw": 88.065,
+  "total_gap_tinggi_gw": 106.095,
+  "total_existing_gw": 4.415,
+  "total_potential_gw": 673.25,
+  "jenis_unggulan": [
+    {
+      "province": "Jawa Barat",
+      "best_ebt_type": "Hydro",
+      "potential_mw": 8000.0
+    },
+    {
+      "province": "Jawa Tengah",
+      "best_ebt_type": "Hydro",
+      "potential_mw": 7500.0
+    },
+    {
+      "province": "Jawa Timur",
+      "best_ebt_type": "Hydro",
+      "potential_mw": 7000.0
+    },
+    {
+      "province": "Papua",
+      "best_ebt_type": "Hydro",
+      "potential_mw": 9000.0
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "total_plants": 70,
+  "total_capacity_mw": 29333.0,
+  "total_annual_co2_million_tons": 183.0819195,
+  "total_annual_cost_billion_usd": 25.065360163125,
+  "total_cost_bau_billion_usd": 751.96080489375,
+  "total_cost_pensiun_cepat_billion_usd": 350.91504228375,
+  "total_cost_pensiun_agresif_billion_usd": 100.2614406525,
+  "savings_cepat_billion_usd": 401.04576261,
+  "savings_agresif_billion_usd": 651.69936424125,
+  "health_cost_saving_billion_usd": 2080.0
+}
